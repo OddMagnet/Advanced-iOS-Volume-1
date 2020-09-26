@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C5FDFE5251FEB4E00CACAD2 /* MemoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FDFE4251FEB4E00CACAD2 /* MemoriesViewController.swift */; };
+		4C5FDFE8251FEC0100CACAD2 /* MemoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FDFE7251FEC0100CACAD2 /* MemoryCell.swift */; };
 		4CDAC33E251E31EB00433FA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAC33D251E31EB00433FA6 /* AppDelegate.swift */; };
 		4CDAC340251E31EB00433FA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAC33F251E31EB00433FA6 /* SceneDelegate.swift */; };
 		4CDAC342251E31EB00433FA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAC341251E31EB00433FA6 /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C5FDFE4251FEB4E00CACAD2 /* MemoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesViewController.swift; sourceTree = "<group>"; };
+		4C5FDFE7251FEC0100CACAD2 /* MemoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCell.swift; sourceTree = "<group>"; };
 		4CDAC33A251E31EB00433FA6 /* Happy Days.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Happy Days.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CDAC33D251E31EB00433FA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CDAC33F251E31EB00433FA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 				4CDAC33D251E31EB00433FA6 /* AppDelegate.swift */,
 				4CDAC33F251E31EB00433FA6 /* SceneDelegate.swift */,
 				4CDAC341251E31EB00433FA6 /* ViewController.swift */,
+				4C5FDFE4251FEB4E00CACAD2 /* MemoriesViewController.swift */,
+				4C5FDFE7251FEC0100CACAD2 /* MemoryCell.swift */,
 				4CDAC343251E31EB00433FA6 /* Main.storyboard */,
 				4CDAC346251E31ED00433FA6 /* Assets.xcassets */,
 				4CDAC348251E31ED00433FA6 /* LaunchScreen.storyboard */,
@@ -140,6 +146,8 @@
 				4CDAC342251E31EB00433FA6 /* ViewController.swift in Sources */,
 				4CDAC33E251E31EB00433FA6 /* AppDelegate.swift in Sources */,
 				4CDAC340251E31EB00433FA6 /* SceneDelegate.swift in Sources */,
+				4C5FDFE5251FEB4E00CACAD2 /* MemoriesViewController.swift in Sources */,
+				4C5FDFE8251FEC0100CACAD2 /* MemoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
