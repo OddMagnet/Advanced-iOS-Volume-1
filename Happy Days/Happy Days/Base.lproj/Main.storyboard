@@ -33,7 +33,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Continue"/>
                                         <connections>
-                                            <action selector="requestPermissions:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bO2-Jc-hK2"/>
+                                            <action selector="requestPhotosPermission:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2LF-EB-hgi"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -50,7 +50,6 @@
                     <navigationItem key="navigationItem" title="Welcome" id="WTm-7J-YWC"/>
                     <connections>
                         <outlet property="helpLabel" destination="yvH-sn-lhP" id="mWi-5T-jCp"/>
-                        <outlet property="requestPermissions" destination="0KL-L5-9aZ" id="vZu-c1-t5L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -125,10 +124,10 @@
             </objects>
             <point key="canvasLocation" x="2673.913043478261" y="105.80357142857143"/>
         </scene>
-        <!--First Run-->
+        <!--Navigation Controller-->
         <scene sceneID="H0I-fz-fMj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h0d-Jd-0Dh" customClass="FirstRun" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FirstRun" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h0d-Jd-0Dh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HZ9-6u-hMZ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
