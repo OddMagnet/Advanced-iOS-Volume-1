@@ -11,11 +11,18 @@ import Photos
 import Speech
 
 class MemoriesViewController: UICollectionViewController {
+    var memories = [URL]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        loadMemories()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
         checkPermissions()
     }
 
@@ -35,6 +42,38 @@ class MemoriesViewController: UICollectionViewController {
                 navigationController?.present(vc, animated: true)
             }
         }
+    }
+
+    func loadMemories() {
+        memories.removeAll()
+
+        // try to load all files
+        guard let files = try? FileManager.default.contentsOfDirectory(at: getDocumentsDirectory(),
+                                                                       includingPropertiesForKeys: nil,
+                                                                       options: []) else { return }
+        // loop over them
+        for file in files {
+            let filename = file.lastPathComponent
+
+            // only check for thumbnails to avoid duplicates
+            if filename.hasSuffix(".thumb") {
+                // get just the file name
+                let memoryName = filename.replacingOccurrences(of: ".thumb", with: "")
+                // create the path for that memory
+                let memoryPath = getDocumentsDirectory().appendingPathComponent(memoryName)
+                // and add it to the memory array
+                memories.append(memoryPath)
+            }
+        }
+
+        // reload the collection view
+        // using reloadSections so the SearchBox in section 0 does not get reloaded
+        collectionView.reloadSections(IndexSet(integer: 1))
+    }
+
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
     
 
