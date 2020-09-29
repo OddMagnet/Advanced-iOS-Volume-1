@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    /// Requests permission for access to the users photos
     @IBAction func requestPhotosPermission(_ sender: AnyObject) {
         PHPhotoLibrary.requestAuthorization { [unowned self] authStatus in
             DispatchQueue.main.async {
@@ -30,6 +31,7 @@ class ViewController: UIViewController {
         }
     }
 
+    /// Requests permission for access to the users microphone
     func requestRecordPermission() {
         AVAudioSession.sharedInstance().requestRecordPermission { [unowned self] allowed in
             DispatchQueue.main.async {
@@ -42,6 +44,7 @@ class ViewController: UIViewController {
         }
     }
 
+    /// Requests permission for transcribing the users speech recordings
     func requestTranscribePermission() {
         SFSpeechRecognizer.requestAuthorization { [unowned self] authStatus in
             DispatchQueue.main.async {
@@ -54,6 +57,7 @@ class ViewController: UIViewController {
         }
     }
 
+    /// Dismisses the FirstRun ViewController
     func authorizationComplete() {
         dismiss(animated: true)
     }
