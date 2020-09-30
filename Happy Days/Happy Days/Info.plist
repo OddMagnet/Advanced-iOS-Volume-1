@@ -20,6 +20,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This is used to record narration.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This is used to import photos.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>This is used to transcribe narration.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -62,11 +68,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This is used to import photos.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>This is used to record narration.</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>This is used to transcribe narration.</string>
 </dict>
 </plist>
