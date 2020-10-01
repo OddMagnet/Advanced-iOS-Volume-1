@@ -16,6 +16,7 @@ class MemoriesViewController: UICollectionViewController,
                               UIImagePickerControllerDelegate,
                               UINavigationControllerDelegate,
                               UICollectionViewDelegateFlowLayout,
+                              UISearchBarDelegate,
                               AVAudioRecorderDelegate {
     var memories = [URL]()
     var filteredMemories = [URL]()

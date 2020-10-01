@@ -108,7 +108,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <outlet property="delegate" destination="DrM-7f-vxC" id="4hc-U1-WK7"/>
+                                        <outlet property="delegate" destination="DrM-7f-vxC" id="nmg-fd-6YK"/>
                                     </connections>
                                 </searchBar>
                             </subviews>
