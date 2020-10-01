@@ -18,6 +18,8 @@ class MemoriesViewController: UICollectionViewController,
                               UICollectionViewDelegateFlowLayout,
                               AVAudioRecorderDelegate {
     var memories = [URL]()
+    var filteredMemories = [URL]()
+    var searchQuery: CSSearchQuery?
     var activeMemory: URL!
     var audioRecorder: AVAudioRecorder?
     var recordingURL: URL!
@@ -81,6 +83,9 @@ class MemoriesViewController: UICollectionViewController,
                 memories.append(memoryPath)
             }
         }
+
+        // fill filtered memories
+        filteredMemories = memories
 
         // reload the collection view
         // using reloadSections so the SearchBox in section 0 does not get reloaded
@@ -152,7 +157,7 @@ class MemoriesViewController: UICollectionViewController,
             // get the index for that cell
             if let index = collectionView.indexPath(for: cell) {
                 // set the active memory and start the recording
-                activeMemory = memories[index.row]
+                activeMemory = filteredMemories[index.row]
                 recordMemory()
             }
 
@@ -291,6 +296,69 @@ class MemoriesViewController: UICollectionViewController,
     }
 
 
+    // MARK: - Search
+    /// Starts the filtering of memories as soon as the text in the searchbar changes
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterMemories(text: searchText)
+    }
+
+    /// Dismisses the keyboard then the searchbar button is tapped
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    /// Filters the memories
+    /// - Parameter text: The text to filter for
+    func filterMemories(text: String) {
+        // ensure the search text is not empty
+        guard text.count > 0 else {
+            // if it's empty, then reset filtered memories and reload the collectionView
+            filteredMemories = memories
+            UIView.performWithoutAnimation {
+                collectionView.reloadSections(IndexSet(integer: 1))
+            }
+            return
+        }
+
+        // create an empty array
+        var matchingItems = [CSSearchableItem]()
+
+        // cancel any eventually running searches
+        searchQuery?.cancel()
+
+        // create a query string and the query itself
+        let queryString = "contentDescription == \"*\(text)*\"c"
+        searchQuery = CSSearchQuery(queryString: queryString, attributes: nil)
+
+        // create a handler for found items
+        searchQuery?.foundItemsHandler = { items in
+            matchingItems.append(contentsOf: items)
+        }
+
+        // and a handler for the finished search
+        searchQuery?.completionHandler = { error in
+            DispatchQueue.main.async { [unowned self] in
+                self.activateFilter(matches: matchingItems)
+            }
+        }
+
+        // finally, start the query
+        searchQuery?.start()
+    }
+
+    func activateFilter(matches: [CSSearchableItem]) {
+        filteredMemories = matches.map { memory in
+            // since the unique identifier for searchable items was the URL to the memory, it's easy to map it back
+            return URL(fileURLWithPath: memory.uniqueIdentifier)
+        }
+
+        // reload the collection view to show the filtered memories
+        UIView.performWithoutAnimation {
+            collectionView.reloadSections(IndexSet(integer: 1))
+        }
+    }
+
+
     // MARK: - AVAudio
     /// Checks if recording finished successfully and calls finishRecording() if it wasn't
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
@@ -310,7 +378,7 @@ class MemoriesViewController: UICollectionViewController,
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return section == 0
             ? 0
-            : memories.count
+            : filteredMemories.count
     }
 
     /// returns a cell with the right thumbnail
@@ -319,7 +387,7 @@ class MemoriesViewController: UICollectionViewController,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Memory", for: indexPath) as! MemoryCell
 
         // set it up
-        let memory = memories[indexPath.row]
+        let memory = filteredMemories[indexPath.row]
         let thumbnailName = thumbnailURL(for: memory).path
         let thumbnail = UIImage(contentsOfFile: thumbnailName)
         cell.imageView.image = thumbnail
@@ -341,7 +409,7 @@ class MemoriesViewController: UICollectionViewController,
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let memory = memories[indexPath.row]
+        let memory = filteredMemories[indexPath.row]
         let fm = FileManager.default
 
         do {
