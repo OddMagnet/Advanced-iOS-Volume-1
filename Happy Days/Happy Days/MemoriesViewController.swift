@@ -9,6 +9,8 @@ import UIKit
 import AVFoundation
 import Photos
 import Speech
+import CoreSpotlight
+import MobileCoreServices
 
 class MemoriesViewController: UICollectionViewController,
                               UIImagePickerControllerDelegate,
@@ -251,9 +253,39 @@ class MemoriesViewController: UICollectionViewController,
                 // and write it to the disk
                 do {
                     try resultText.write(to: transcription, atomically: true, encoding: .utf8)
+                    self.indexMemory(memory: memory, text: resultText)
                 } catch {
                     print("Failed to save transcription: \(error)")
                 }
+            }
+        }
+    }
+
+    /// Indexes a memory for spotlight search
+    /// - Parameters:
+    ///   - memory: The URL to the memory
+    ///   - text: The transcription or text to index the memory with
+    func indexMemory(memory: URL, text: String) {
+        // create attribute set for the memory
+        let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+        attributeSet.title = "Happy Days Memory"
+        attributeSet.contentDescription = text
+        attributeSet.thumbnailURL = thumbnailURL(for: memory)
+
+        // wrap it as a searchable item
+        let item = CSSearchableItem(uniqueIdentifier: memory.path,
+                                    domainIdentifier: "io.oddmagnet",
+                                    attributeSet: attributeSet)
+
+        // no expiration
+        item.expirationDate = .distantFuture
+
+        // and index it
+        CSSearchableIndex.default().indexSearchableItems([item]) { error in
+            if let error = error {
+                print("Indexing error: \(error.localizedDescription)")
+            } else {
+                print("Search item successfully indexed: \(text)")
             }
         }
     }
