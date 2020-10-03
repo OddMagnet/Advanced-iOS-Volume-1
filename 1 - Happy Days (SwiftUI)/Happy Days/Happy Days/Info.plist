@@ -46,5 +46,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This permission is used to import photos</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This permission is used to record audio</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>This permission is used to transcribe audio</string>
 </dict>
 </plist>

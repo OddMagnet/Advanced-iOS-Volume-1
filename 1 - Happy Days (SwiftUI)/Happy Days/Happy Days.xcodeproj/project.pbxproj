@@ -11,6 +11,8 @@
 		4CCE1A8D2528C64A00FEC79B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCE1A8C2528C64A00FEC79B /* ContentView.swift */; };
 		4CCE1A8F2528C64E00FEC79B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CCE1A8E2528C64E00FEC79B /* Assets.xcassets */; };
 		4CCE1A922528C64E00FEC79B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CCE1A912528C64E00FEC79B /* Preview Assets.xcassets */; };
+		4CCE1A9B2528D1B700FEC79B /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCE1A9A2528D1B700FEC79B /* Memory.swift */; };
+		4CCE1A9F2528D41900FEC79B /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCE1A9E2528D41800FEC79B /* PermissionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		4CCE1A8E2528C64E00FEC79B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4CCE1A912528C64E00FEC79B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4CCE1A932528C64E00FEC79B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CCE1A9A2528D1B700FEC79B /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		4CCE1A9E2528D41800FEC79B /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			children = (
 				4CCE1A8A2528C64A00FEC79B /* Happy_DaysApp.swift */,
 				4CCE1A8C2528C64A00FEC79B /* ContentView.swift */,
+				4CCE1A9E2528D41800FEC79B /* PermissionView.swift */,
+				4CCE1A9A2528D1B700FEC79B /* Memory.swift */,
 				4CCE1A8E2528C64E00FEC79B /* Assets.xcassets */,
 				4CCE1A932528C64E00FEC79B /* Info.plist */,
 				4CCE1A902528C64E00FEC79B /* Preview Content */,
@@ -138,8 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CCE1A9B2528D1B700FEC79B /* Memory.swift in Sources */,
 				4CCE1A8D2528C64A00FEC79B /* ContentView.swift in Sources */,
 				4CCE1A8B2528C64A00FEC79B /* Happy_DaysApp.swift in Sources */,
+				4CCE1A9F2528D41900FEC79B /* PermissionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
