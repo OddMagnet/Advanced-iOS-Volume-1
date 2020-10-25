@@ -9,23 +9,18 @@ import Foundation
 
 struct Memory: Identifiable {
     var id = UUID()
-    var name: String
+    var memoryPath: URL
 
     var imageURL: URL {
-        return getMemoryBaseURL().appendingPathExtension("jpg")
+        return memoryPath.appendingPathExtension("jpg")
     }
     var thumbURL: URL {
-        return getMemoryBaseURL().appendingPathExtension("thumb")
+        return memoryPath.appendingPathExtension("thumb")
     }
     var audioURL: URL {
-        return getMemoryBaseURL().appendingPathExtension("m4a")
+        return memoryPath.appendingPathExtension("m4a")
     }
     var transcriptionURL: URL {
-        return getMemoryBaseURL().appendingPathExtension("txt")
-    }
-
-    private func getMemoryBaseURL() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0].appendingPathComponent(name)
+        return memoryPath.appendingPathExtension("txt")
     }
 }
