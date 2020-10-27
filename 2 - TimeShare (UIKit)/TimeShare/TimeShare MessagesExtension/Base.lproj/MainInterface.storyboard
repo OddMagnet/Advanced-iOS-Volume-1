@@ -37,10 +37,10 @@
             </objects>
             <point key="canvasLocation" x="139" y="106"/>
         </scene>
-        <!--View Controller-->
+        <!--Event View Controller-->
         <scene sceneID="hSY-8e-QeQ">
             <objects>
-                <viewController storyboardIdentifier="CreateEvent" id="SFt-RK-OuD" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateEvent" id="SFt-RK-OuD" customClass="EventViewController" customModule="TimeShare_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nAf-dL-e7n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -67,6 +67,9 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="delegate" destination="SFt-RK-OuD" id="fca-ed-aFk"/>
+                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0X-xB-ZvA">
                                 <rect key="frame" x="0.0" y="268" width="320" height="216"/>
@@ -87,6 +90,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bX1-JL-b1M">
                                         <rect key="frame" x="0.0" y="0.0" width="64" height="44"/>
                                         <state key="normal" title="Add Date"/>
+                                        <connections>
+                                            <action selector="addDate:" destination="SFt-RK-OuD" eventType="touchUpInside" id="6di-Yi-u5b"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IO0-1l-rkE">
                                         <rect key="frame" x="104" y="0.0" width="44" height="44"/>
@@ -95,6 +101,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveSelectedDates:" destination="SFt-RK-OuD" eventType="touchUpInside" id="ZU7-j9-Aag"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -117,15 +126,19 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="320" height="528"/>
+                    <connections>
+                        <outlet property="datePicker" destination="m0C-Nk-uJz" id="ohI-Mk-sPh"/>
+                        <outlet property="tableView" destination="Us3-cX-cZt" id="QAB-qZ-9W4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAC-Qh-6Bw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="636" y="106"/>
         </scene>
-        <!--View Controller-->
+        <!--Event View Controller-->
         <scene sceneID="VqF-Fz-Sk4">
             <objects>
-                <viewController storyboardIdentifier="SelectDates" id="Qac-dw-WGR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectDates" id="Qac-dw-WGR" customClass="EventViewController" customModule="TimeShare_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="84q-HX-Mwe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -159,6 +172,9 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="delegate" destination="Qac-dw-WGR" id="ZKP-ls-bZI"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhA-D0-e41">
                                 <rect key="frame" x="138" y="484" width="44" height="44"/>
@@ -168,6 +184,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveSelectedDates:" destination="Qac-dw-WGR" eventType="touchUpInside" id="vfS-KR-k3e"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="l5O-Zs-ps8"/>
@@ -182,6 +201,9 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="320" height="528"/>
+                    <connections>
+                        <outlet property="tableView" destination="ErA-gs-J0E" id="7Vq-lh-aJr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJS-85-2il" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -8,6 +8,8 @@
 import UIKit
 
 class EventViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var datePicker: UIDatePicker!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +17,12 @@ class EventViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func addDate(_ sender: Any) {
+    }
 
+    @IBAction func saveSelectedDates(_ sender: Any) {
+    }
+    
     /*
     // MARK: - Navigation
 
