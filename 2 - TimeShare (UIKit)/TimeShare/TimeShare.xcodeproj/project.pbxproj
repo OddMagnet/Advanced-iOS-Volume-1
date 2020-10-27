@@ -13,6 +13,7 @@
 		4C8E5E4125487876004699C3 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E5E4025487876004699C3 /* MessagesViewController.swift */; };
 		4C8E5E4425487876004699C3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E5E4225487876004699C3 /* MainInterface.storyboard */; };
 		4C8E5E4625487877004699C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E5E4525487877004699C3 /* Assets.xcassets */; };
+		4C8E5E5425488254004699C3 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E5E5325488254004699C3 /* EventViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4C8E5E4325487876004699C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		4C8E5E4525487877004699C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C8E5E4725487877004699C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C8E5E5325488254004699C3 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				4C8E5E4025487876004699C3 /* MessagesViewController.swift */,
+				4C8E5E5325488254004699C3 /* EventViewController.swift */,
 				4C8E5E4225487876004699C3 /* MainInterface.storyboard */,
 				4C8E5E4525487877004699C3 /* Assets.xcassets */,
 				4C8E5E4725487877004699C3 /* Info.plist */,
@@ -209,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C8E5E4125487876004699C3 /* MessagesViewController.swift in Sources */,
+				4C8E5E5425488254004699C3 /* EventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
