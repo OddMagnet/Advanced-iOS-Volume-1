@@ -7,7 +7,10 @@
 
 import UIKit
 
-class EventViewController: UIViewController {
+class EventViewController: UIViewController,
+                           UITableViewDelegate,
+                           UITableViewDataSource {
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
 
@@ -22,6 +25,22 @@ class EventViewController: UIViewController {
 
     @IBAction func saveSelectedDates(_ sender: Any) {
     }
+
+    // MARK: - Table View Delegate
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Date", for: indexPath)
+        cell.textLabel?.text = "Date goes here"
+        return cell
+    }
+
     
     /*
     // MARK: - Navigation

@@ -22,6 +22,9 @@
                                     <constraint firstAttribute="height" constant="44" id="gON-xx-UHJ"/>
                                 </constraints>
                                 <state key="normal" title="Create New Event"/>
+                                <connections>
+                                    <action selector="createNewEvent:" destination="ObA-dk-sSI" eventType="touchUpInside" id="hMy-YC-C4l"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LDy-ih-0nr"/>
@@ -68,6 +71,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
+                                    <outlet property="dataSource" destination="SFt-RK-OuD" id="MHD-dN-BrI"/>
                                     <outlet property="delegate" destination="SFt-RK-OuD" id="fca-ed-aFk"/>
                                 </connections>
                             </tableView>
