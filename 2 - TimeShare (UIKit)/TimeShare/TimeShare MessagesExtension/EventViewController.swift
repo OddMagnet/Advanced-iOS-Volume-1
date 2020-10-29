@@ -77,6 +77,23 @@ class EventViewController: UIViewController,
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // deselect row since tapping a row should only toggle the users vote
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        // get the cell
+        if let cell = tableView.cellForRow(at: indexPath) {
+            // check if the current vote status and toggle it's status
+            if cell.accessoryType == .checkmark {
+                cell.accessoryType = .none
+                ourVotes[indexPath.row] = 0
+            } else {
+                cell.accessoryType = .checkmark
+                ourVotes[indexPath.row] = 1
+            }
+        }
+    }
+
     
     /*
     // MARK: - Navigation
