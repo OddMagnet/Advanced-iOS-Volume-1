@@ -11,6 +11,10 @@ class EventViewController: UIViewController,
                            UITableViewDelegate,
                            UITableViewDataSource {
 
+    var dates = [Date]()
+    var allVotes = [Int]()
+    var ourVotes = [Int]()
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
 
@@ -21,6 +25,18 @@ class EventViewController: UIViewController,
     }
     
     @IBAction func addDate(_ sender: Any) {
+        // add currently selected date to the arrays
+        dates.append(datePicker.date)
+        allVotes.append(0)
+        ourVotes.append(1)
+
+        // insert a new row for the array and scroll to it
+        let newIndexPath = IndexPath(row: dates.count - 1 , section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+        tableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
+
+        // flash scroll bar to notify user that a change has happened
+        tableView.flashScrollIndicators()
     }
 
     @IBAction func saveSelectedDates(_ sender: Any) {
@@ -32,7 +48,7 @@ class EventViewController: UIViewController,
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return dates.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
