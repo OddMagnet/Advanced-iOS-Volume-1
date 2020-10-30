@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Messages
 
 class EventViewController: UIViewController,
                            UITableViewDelegate,
@@ -50,6 +51,35 @@ class EventViewController: UIViewController,
         // then call the delegates createMessage method
         delegate.createMessage(with: dates, votes: finalVotes)
     }
+
+    func load(from message: MSMessage?) {
+        // ensure everything that's needed actually exists
+        guard let message = message else { return }
+        guard let messageURL = message.url else { return }
+        guard let urlComponents = URLComponents(url: messageURL, resolvingAgainstBaseURL: false) else { return }
+        guard let queryItems = urlComponents.queryItems else { return }
+
+        // then query all dates and votes
+        for item in queryItems {
+            if item.name.hasPrefix("date-") {
+                dates.append(date(from: item.value ?? ""))
+            } else if item.name.hasPrefix("vote-") {
+                let voteCount = Int(item.value ?? "") ?? 0
+                allVotes.append(voteCount)
+                ourVotes.append(0)
+            }
+        }
+    }
+
+
+    // MARK: - Helper
+    func date(from string: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = "yyyy-MM-dd-HH-mm"
+        return dateFormatter.date(from: string) ?? Date()
+    }
+
 
     // MARK: - Table View Delegate
     func numberOfSections(in tableView: UITableView) -> Int {

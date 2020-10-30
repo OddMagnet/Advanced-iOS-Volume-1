@@ -30,6 +30,9 @@ class MessagesViewController: MSMessagesAppViewController {
         // create a child view controller for the new view
         guard let childVC = storyboard?.instantiateViewController(withIdentifier: identifier) as? EventViewController else { return }
 
+        // load messages if available
+        childVC.load(from: conversation.selectedMessage)
+
         // assign self to the EventViewControllers delegate
         childVC.delegate = self
 
@@ -79,6 +82,7 @@ class MessagesViewController: MSMessagesAppViewController {
 
         // create a blank, default message layout and assign that to the message
         let layout = MSMessageTemplateLayout()
+        layout.caption = "I voted"
         message.layout = layout
 
         // finally, insert the message into the conversation
@@ -105,6 +109,9 @@ class MessagesViewController: MSMessagesAppViewController {
         // This will happen when the extension is about to present UI.
         
         // Use this method to configure the extension and restore previously stored state.
+        if presentationStyle == .expanded {
+            displayEventViewController(conversation: conversation, identifier: "SelectDates")
+        }
     }
     
     override func didResignActive(with conversation: MSConversation) {
