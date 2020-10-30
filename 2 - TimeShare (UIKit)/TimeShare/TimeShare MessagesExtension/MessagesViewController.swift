@@ -30,6 +30,9 @@ class MessagesViewController: MSMessagesAppViewController {
         // create a child view controller for the new view
         guard let childVC = storyboard?.instantiateViewController(withIdentifier: identifier) as? EventViewController else { return }
 
+        // assign self to the EventViewControllers delegate
+        childVC.delegate = self
+
         // add it to the parent to ensure events are forwarded
         addChild(childVC)
 
@@ -47,6 +50,54 @@ class MessagesViewController: MSMessagesAppViewController {
         // inform the child about its new parent
         childVC.didMove(toParent: self)
     }
+
+    func createMessage(with dates: [Date], votes: [Int]) {
+        // return to compact mode
+        requestPresentationStyle(.compact)
+
+        // check that there's a conversation to work with
+        guard let conversation = activeConversation else { return }
+
+        // convert Dates and Votes into URLQueryItems
+        var components = URLComponents()
+        var items = [URLQueryItem]()
+        for (index, date) in dates.enumerated() {
+            let dateItem = URLQueryItem(name: "date-\(index)", value: string(from: date))
+            let voteItem = URLQueryItem(name: "vote-\(index)", value: String(votes[index]))
+
+            items.append(dateItem)
+            items.append(voteItem)
+        }
+        components.queryItems = items
+
+        // check for a session, create a new one if needed
+        let session = conversation.selectedMessage?.session ?? MSSession()
+
+        // create a new message from the session, assign it the url from the components, so it can transfer the dates and votes data
+        let message = MSMessage(session: session)
+        message.url = components.url
+
+        // create a blank, default message layout and assign that to the message
+        let layout = MSMessageTemplateLayout()
+        message.layout = layout
+
+        // finally, insert the message into the conversation
+        conversation.insert(message) { error in
+            if let error = error {
+                print("### ERROR: \(error)")
+            }
+        }
+    }
+
+
+    // MARK: - Helper
+    func string(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = "yyyy-MM-dd-HH-mm"
+        return dateFormatter.string(from: date)
+    }
+
 
     // MARK: - Conversation Handling
     override func willBecomeActive(with conversation: MSConversation) {

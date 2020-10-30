@@ -14,6 +14,7 @@ class EventViewController: UIViewController,
     var dates = [Date]()
     var allVotes = [Int]()
     var ourVotes = [Int]()
+    weak var delegate: MessagesViewController!
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -40,6 +41,14 @@ class EventViewController: UIViewController,
     }
 
     @IBAction func saveSelectedDates(_ sender: Any) {
+        // Sum up all votes
+        var finalVotes = [Int]()
+        for (index, votes) in allVotes.enumerated() {
+            finalVotes.append(votes + ourVotes[index])
+        }
+
+        // then call the delegates createMessage method
+        delegate.createMessage(with: dates, votes: finalVotes)
     }
 
     // MARK: - Table View Delegate
