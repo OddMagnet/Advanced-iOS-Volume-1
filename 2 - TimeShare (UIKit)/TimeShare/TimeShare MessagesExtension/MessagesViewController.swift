@@ -82,6 +82,7 @@ class MessagesViewController: MSMessagesAppViewController {
 
         // create a blank, default message layout and assign that to the message
         let layout = MSMessageTemplateLayout()
+        layout.image = render(dates: dates)
         layout.caption = "I voted"
         message.layout = layout
 
@@ -100,6 +101,50 @@ class MessagesViewController: MSMessagesAppViewController {
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.dateFormat = "yyyy-MM-dd-HH-mm"
         return dateFormatter.string(from: date)
+    }
+
+    func render(dates: [Date]) -> UIImage {
+        // set padding for later use
+        let insetPadding: CGFloat = 20
+
+        // create attributes for the dates text
+        let attributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
+                          NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+
+        // create a string from all dates and trim the last whitespace
+        var stringToRender = ""
+        dates.forEach {
+            stringToRender += DateFormatter.localizedString(from: $0, dateStyle: .long, timeStyle: .short) + "\n"
+        }
+        let trimmedToRender = stringToRender.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        // create the attributed string
+        let attributedStringToRender = NSAttributedString(string: trimmedToRender, attributes: attributes)
+
+        // calculate size
+        var imageSize = attributedStringToRender.size()
+        imageSize.width += insetPadding * 2
+        imageSize.height += insetPadding * 2
+
+        // create image on @3x scale
+        let format = UIGraphicsImageRendererFormat()
+        format.opaque = true
+        format.scale = 3
+
+        // create the renderer
+        let renderer = UIGraphicsImageRenderer(size: imageSize, format: format)
+
+        // render the image
+        let image = renderer.image{ ctx in
+            // White background
+            UIColor.white.set()
+            ctx.fill(CGRect(origin: CGPoint.zero, size: imageSize))
+
+            // render the text
+            attributedStringToRender.draw(at: CGPoint(x: insetPadding, y: insetPadding))
+        }
+
+        return image
     }
 
 
