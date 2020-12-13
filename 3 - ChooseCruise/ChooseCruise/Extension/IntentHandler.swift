@@ -18,7 +18,16 @@ class IntentHandler: INExtension,
 {
     // MARK: - INListRideOptionsIntentHandling
     func handle(intent: INListRideOptionsIntent, completion: @escaping (INListRideOptionsIntentResponse) -> Void) {
+        let mini = INRideOption(name: "Mini Cooper", estimatedPickupDate: Date(timeIntervalSinceNow: 1000))
+        let honda = INRideOption(name: "Honda Accord", estimatedPickupDate: Date(timeIntervalSinceNow: 800))
+        let ferrari = INRideOption(name: "Ferrari F430", estimatedPickupDate: Date(timeIntervalSinceNow: 300))
+        ferrari.disclaimerMessage = "This is bad for the environment"
 
+        let result = INListRideOptionsIntentResponse(code: .success, userActivity: nil)
+        result.expirationDate = Date(timeIntervalSinceNow: 3600)
+        result.rideOptions = [mini, honda, ferrari]
+
+        completion(result)
     }
 
     // MARK: - INRequestRideIntentHandling
