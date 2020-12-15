@@ -65,6 +65,7 @@ class IntentHandler: INExtension,
     /// Gets called when the user leaves feedback for the ride, for test purposes the result will always be `.success`. `userActivity` would be e.g. when the user asks to open the app for more information
     func handle(sendRideFeedback sendRideFeedbackintent: INSendRideFeedbackIntent, completion: @escaping (INSendRideFeedbackIntentResponse) -> Void) {
         let result = INSendRideFeedbackIntentResponse(code: .success, userActivity: nil)
+        completion(result)
     }
 
 }
