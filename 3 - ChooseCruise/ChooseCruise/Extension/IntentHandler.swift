@@ -32,13 +32,49 @@ class IntentHandler: INExtension,
 
     // MARK: - INRequestRideIntentHandling
     func handle(intent: INRequestRideIntent, completion: @escaping (INRequestRideIntentResponse) -> Void) {
+        let result = INRequestRideIntentResponse(code: .success, userActivity: nil)
 
+        // create a status with a unique identified, containing pickup/dropoff location, the current phase and estimated time
+        let status = INRideStatus()
+        status.rideIdentifier = "UniqueStringHere"
+        status.pickupLocation = intent.pickupLocation
+        status.dropOffLocation = intent.dropOffLocation
+        status.phase = .confirmed
+        status.estimatedPickupDate = Date(timeIntervalSinceNow: 900)
+
+        // create a vehicle for the pickup, add an image for maps and a location
+        let vehicle = INRideVehicle()
+        vehicle.mapAnnotationImage = INImage(named: "car")
+        vehicle.location = intent.dropOffLocation!.location // same as dropOff location, for testing purposes
+
+        // finally, assign the vehicle
+        status.vehicle = vehicle
+        // attach status to the result
+        result.rideStatus = status
+        // and call the completion handler
+        completion(result)
     }
     func resolvePickupLocation(for intent: INRequestRideIntent, with completion: @escaping (INPlacemarkResolutionResult) -> Void) {
+        let result: INPlacemarkResolutionResult
 
+        if let requestedLocation = intent.pickupLocation {  // valid pickup location
+            result = .success(with: requestedLocation)
+        } else {                                            // invalid pickup location
+            result = INPlacemarkResolutionResult.needsValue()
+        }
+
+        completion(result)
     }
     func resolveDropOffLocation(for intent: INRequestRideIntent, with completion: @escaping (INPlacemarkResolutionResult) -> Void) {
+        let result: INPlacemarkResolutionResult
 
+        if let requestedLocation = intent.dropOffLocation { // valid dropOff location
+            result = .success(with: requestedLocation)
+        } else {                                            // invalid dropOff location
+            result = INPlacemarkResolutionResult.needsValue()
+        }
+
+        completion(result)
     }
 
     // MARK: - INGetRideStatusIntentHandling
